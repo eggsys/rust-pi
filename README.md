@@ -42,6 +42,27 @@ Cargo is Rust's build system and package manager.
 
 > `cargo check` quickly validates your code without producing an executable — useful to keep running while writing code.
 
+## approx_constants (Clippy Lint)
+
+Rust's linter **Clippy** will warn you if you hardcode an approximate value of a known mathematical constant instead of using the built-in one.
+
+```rust
+// Bad — Clippy will warn: "approximate value of `f32::consts::PI` found"
+let x: f32 = 3.14;
+let x: f32 = 3.141;
+
+// Good — use the standard library constant
+let x: f32 = std::f32::consts::PI; // 3.1415927
+```
+
+Run Clippy with:
+
+```bash
+cargo clippy
+```
+
+Using the built-in constant is more precise and makes the intent clear. This project uses `std::f32::consts::PI` correctly.
+
 ## Running This Project
 
 ```bash
